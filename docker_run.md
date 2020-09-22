@@ -4,22 +4,22 @@
 
 `$ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`
 
-1. 运行一个在后台执行的容器，同时，还能用控制台管理：
+1. 运行一个在后台执行的容器，同时，还能用控制台管理：<br>
 `docker run -i -t -d ubuntu:latest`
 
-2. 运行一个带命令在后台不断执行的容器，不直接展示容器内部信息：
+2. 运行一个带命令在后台不断执行的容器，不直接展示容器内部信息：<br>
 `docker run -d ubuntu:latest ping www.docker.com`
 
-3. 运行一个在后台不断执行的容器，同时带有命令，程序被终止后还能重启继续跑，还能用控制台管理:
+3. 运行一个在后台不断执行的容器，同时带有命令，程序被终止后还能重启继续跑，还能用控制台管理:<br>
 `docker run -d --restart=always ubuntu:latest ping www.docker.com`
 
-4. 为容器指定一个名字:
+4. 为容器指定一个名字:<br>
 `docker run -d --name=ubuntu_server ubuntu:latest`
 
-5. 容器暴露80端口，并指定宿主机80端口与其通信(: 之前是宿主机端口，之后是容器需暴露的端口):
+5. 容器暴露80端口，并指定宿主机80端口与其通信(: 之前是宿主机端口，之后是容器需暴露的端口):<br>
 `docker run -d --name=ubuntu_server -p 80:80 ubuntu:latest`
 
-6. 指定容器内目录与宿主机目录共享(: 之前是宿主机文件夹，之后是容器需共享的文件夹):
+6. 指定容器内目录与宿主机目录共享(: 之前是宿主机文件夹，之后是容器需共享的文件夹):<br>
 `docker run -d --name=ubuntu_server -v /etc/www:/var/www ubuntu:latest`
 
 `-a, --attach=[]`                 登录容器（以docker run -d启动的容器）<br>
@@ -125,14 +125,13 @@
 当你使用--link方式时，作为客户端的容器可以通过私有网络形式访问到这个容器。同时Docker会在客户端的容器中设定一些环境变量来记录绑定的IP和PORT。
 
 4. ENV
+当容器启动时，会自动在容器中初始化这些变量。docker run 通过`-e`来设定任意的环境变量，甚至覆盖已经存在的环境变量。
 ```
 HOME    Set based on the value of USER
 HOSTNAME    The hostname associated with the container
 PATH    Includes popular directories, such as : /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 TERM    xterm if the container is allocated a psuedo-TTY
 ```
-当容器启动时，会自动在容器中初始化这些变量。docker run 通过`-e`来设定任意的环境变量，甚至覆盖已经存在的环境变量。
-
 5. VOLUME
 Dockerfile中可以设定多个volume<br>
 -v=[]<br>
